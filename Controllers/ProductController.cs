@@ -18,7 +18,7 @@ namespace InvoiceSystem.Controllers
             _productService = productService;
             _logger = logger;
         }
-
+        //Add product
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
@@ -29,9 +29,25 @@ namespace InvoiceSystem.Controllers
         }
 
 
-        //Add product
+
         //UpdateProduct
+        [HttpPut]
+        public IActionResult UpdateProduct([FromBody] Product product)
+        {
+            _productService.UpdateProduct(product);
+            _logger.LogInformation("Updated product: {Id}", product.id);
+            return Ok();
+        }
+
+
         //Delete
+        [HttpDelete("{id}")]
+        public IActionResult DeleteProduct(int id)
+        {
+            _productService.DeleteProduct(id);
+            _logger.LogInformation("Deleted product: {Id}", id);
+            return Ok();
+        }
         //GetAllProducts
         [HttpGet]
         public IActionResult GetAllProducts()

@@ -44,5 +44,16 @@ namespace InvoiceSystem.Services
         {
             return _products;
         }
+
+        internal void DeleteProduct(int id)
+        {
+            var product = _products.FirstOrDefault(p => p.id == id);
+            if (product != null)
+            {
+                _products.Remove(product);
+                _fileHandler.WriteToFile(_filePath, _products);
+            }
+            //throw new NotImplementedException();
+        }
     }
 }
