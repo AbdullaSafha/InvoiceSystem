@@ -1,6 +1,10 @@
+using InvoiceSystem.Class;
 using InvoiceSystem.DataAccess;
 using InvoiceSystem.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +32,31 @@ builder.Services.AddSingleton<CategoryService>();
 builder.Services.AddSingleton<CustomerService>();
 builder.Services.AddSingleton<InvoiceService>();
 builder.Services.AddSingleton<JsonHandler>();
+builder.Services.AddSingleton<jwtService>();
+
+//
+
+var jwtKey = Encoding.ASCII.GetBytes("AA");
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+       .AddJwtBearer(options =>
+       {
+           options.RequireHttpsMetadata = false; 
+           options.SaveToken = true;
+           options.TokenValidationParameters = new TokenValidationParameters
+           {
+               ValidateIssuerSigningKey = true,
+               IssuerSigningKey = new SymmetricSecurityKey(jwtKey),
+               ValidateIssuer = false,
+               ValidateAudience = false
+           };
+       });
+
+//
 
 
 var app = builder.Build();
