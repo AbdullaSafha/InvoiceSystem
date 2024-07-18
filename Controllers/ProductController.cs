@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceSystem.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ProductController : Controller
@@ -20,15 +20,25 @@ namespace InvoiceSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProduct()
+        public IActionResult AddProduct(Product product)
         {
-            _logger.LogInformation("Logging is working");
 
+            _logger.LogInformation("Logging is working");
+            _productService.AddProduct(product);
             return null;
         }
+
+
         //Add product
         //UpdateProduct
         //Delete
         //GetAllProducts
+        [HttpGet]
+        public IActionResult GetAllProducts()
+        {
+            var products = _productService.GetAllProducts();
+            _logger.LogInformation("Retrieved all products");
+            return Ok(products);
+        }
     }
 }

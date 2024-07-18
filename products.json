@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "string",
+    "description": "string",
+    "price": 0.0,
+    "quantity": 0,
+    "category": {
+      "id": 0,
+      "name": "string",
+      "description": "string"
+    }
+  },
+  {
+    "id": 2,
+    "name": "string",
+    "description": "string",
+    "price": 0.0,
+    "quantity": 0,
+    "category": {
+      "id": 0,
+      "name": "string",
+      "description": "string"
+    }
+  }
+]
