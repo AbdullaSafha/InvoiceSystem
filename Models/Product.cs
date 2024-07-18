@@ -10,19 +10,19 @@
         public int quantity { get; set; }
         public Category category { get; set; }
 
-        public Product(int _id, 
-            string _name,
-            string _description,
-            decimal _price,
-            int _quantity,
-            Category _category)
+        public Product(int id, 
+            string name,
+            string description,
+            decimal price,
+            int quantity,
+            Category category)
         {
-            id = _id;
-            price = _price;
-            quantity = _quantity;
-            name = _name;
-            description = _description;
-            category = _category;
+            this.id = id;
+            this.price = price;
+            this.quantity = quantity;
+            this.name = name;
+            this.description = description;
+            this.category = category;
         }
     }
 }

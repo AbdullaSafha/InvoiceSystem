@@ -6,12 +6,11 @@
         public string name { get; set; }
         public string description { get; set; }
 
-        public Category(int _id, string _name, string _description)
+        public Category(int id, string name, string description)
         {
-            id = _id;
-            name = _name;
-            description = _description;
+            this.id = id;
+            this.name = name;
+            this.description = description;
         }
-
     }
 }
