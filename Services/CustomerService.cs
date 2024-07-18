@@ -55,5 +55,10 @@ namespace InvoiceSystem.Services
                 _fileHandler.WriteToFile(_filePath, _customer);
             }
         }
+
+        internal Customer GetCustomer(int id)
+        {
+            return _customer.FirstOrDefault(c => c.id == id);
+        }
     }
 }
