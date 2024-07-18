@@ -1,12 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InvoiceSystem.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceSystem.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class CustomerController : Controller
     {
-        public IActionResult Index()
+        private readonly CustomerService _customerService;
+        public CustomerController(CustomerService customerService)
         {
-            return View();
+            _customerService = customerService;
         }
+        //Add
+        //Update
+        //Delete
+        //Get customers
     }
 }

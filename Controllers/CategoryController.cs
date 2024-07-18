@@ -1,12 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InvoiceSystem.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceSystem.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class CategoryController : Controller
     {
-        public IActionResult Index()
+        private readonly CategoryService _categoryService;
+        public CategoryController()
         {
-            return View();
+            _categoryService = new CategoryService();
         }
+        //Add product
+        //UpdateProduct
+        //Delete
+        //GetAllProducts
     }
 }
