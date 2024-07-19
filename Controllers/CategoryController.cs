@@ -14,6 +14,7 @@ namespace InvoiceSystem.Controllers
        
         public CategoryController(CategoryService categoryService, ILogger<ProductController> logger)
         {
+
             _categoryService = categoryService;
             _logger = logger;
         }
@@ -21,7 +22,9 @@ namespace InvoiceSystem.Controllers
         [HttpPost]
         public IActionResult AddCategory([FromBody] Category category)
         {
+            _logger.LogWarning("Add category request receivied");
             _categoryService.AddCategory(category);
+            _logger.LogWarning("Catgeory is added");
             return Ok();
         }
         //UpdateProduct

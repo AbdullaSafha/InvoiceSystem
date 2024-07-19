@@ -3,7 +3,8 @@ using InvoiceSystem.DataAccess;
 using InvoiceSystem.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Serilog;
+using NLog.Web;
+using System.Reflection.Metadata;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,9 +23,6 @@ builder.Logging.AddDebug();
 builder.Logging.AddConsole();
 //
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
 
 builder.Services.AddControllers();
 builder.Services.AddSingleton<ProductService>();
@@ -56,6 +54,12 @@ builder.Services.AddAuthentication(options =>
            };
        });
 
+
+//
+builder.Logging.ClearProviders();
+builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+builder.Host.UseNLog();
+//
 
 
 
