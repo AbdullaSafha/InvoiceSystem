@@ -36,27 +36,27 @@ builder.Services.AddSingleton<jwtService>();
 
 //
 
-var jwtKey = Encoding.ASCII.GetBytes("AA");
+var jwtKey = Encoding.ASCII.GetBytes("your_super_secret_key_that_is_at_least_32_characters_long");
 
-//builder.Services.AddAuthentication(options =>
-//{
-//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//})
-//       .AddJwtBearer(options =>
-//       {
-//           options.RequireHttpsMetadata = false; 
-//           options.SaveToken = true;
-//           options.TokenValidationParameters = new TokenValidationParameters
-//           {
-//               ValidateIssuerSigningKey = true,
-//               IssuerSigningKey = new SymmetricSecurityKey(jwtKey),
-//               ValidateIssuer = false,
-//               ValidateAudience = false
-//           };
-//       });
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+       .AddJwtBearer(options =>
+       {
+           options.RequireHttpsMetadata = false;
+           options.SaveToken = true;
+           options.TokenValidationParameters = new TokenValidationParameters
+           {
+               ValidateIssuerSigningKey = true,
+               IssuerSigningKey = new SymmetricSecurityKey(jwtKey),
+               ValidateIssuer = false,
+               ValidateAudience = false
+           };
+       });
 
-//
+
 
 
 var app = builder.Build();

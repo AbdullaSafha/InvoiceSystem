@@ -56,9 +56,9 @@ namespace InvoiceSystem.Services
             //throw new NotImplementedException();
         }
 
-        internal Product GetProduct(object productId)
+        internal List<Product> GetProduct(object productId)
         {
-            throw new NotImplementedException();
+            return _products;
         }
     }
 }

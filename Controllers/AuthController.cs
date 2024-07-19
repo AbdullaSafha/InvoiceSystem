@@ -17,11 +17,11 @@ namespace InvoiceSystem.Controllers
 
         }
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginModel model)
+        [HttpPost]
+        public IActionResult Login(LoginModel model)
         {
-            var userId = model.userId; // Replace with actual user id
-            var token = _jwtService.GenerateToken(model.userId);
+            var userId =string.Concat(model.Name,model.Password); 
+            var token = _jwtService.GenerateToken(userId);
 
             return Ok(new { Token = token });
         }

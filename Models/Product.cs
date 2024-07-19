@@ -2,7 +2,6 @@
 {
     public class Product
     {
-        //as name, description, price, quantity, and category.
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }

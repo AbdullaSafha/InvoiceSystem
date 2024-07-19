@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceSystem.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ProductController : Controller
@@ -25,7 +25,7 @@ namespace InvoiceSystem.Controllers
 
             _logger.LogInformation("Logging is working");
             _productService.AddProduct(product);
-            return null;
+            return Ok();
         }
 
 
