@@ -20,14 +20,14 @@ namespace InvoiceSystem.Controllers
         public IActionResult AddCustomer(Customer customer)
         {
             _customerService.AddCustomer(customer);
-            return Ok();
+            return Ok(new { Result = "Customer is been added successfully" });
         }
         //Update
         [HttpPut]
         public IActionResult UpdateCustomer(Customer customer)
         {
             _customerService.UpdateCustomer(customer);
-            return Ok();
+            return Ok(new { Result = "Customer is been updated successfully" });
         }
         //Delete
 
@@ -35,7 +35,7 @@ namespace InvoiceSystem.Controllers
         public IActionResult DeleteCustomer(int id)
         {
             _customerService.DeleteCustomer(id);
-            return Ok();
+            return Ok(new { Result = "Customer is been deleted successfully" });
         }
 
         //Get customers
@@ -45,10 +45,5 @@ namespace InvoiceSystem.Controllers
             var customers = _customerService.GetAllCustomers();
             return Ok(customers);
         }
-
-
-        
-        
-        
     }
 }

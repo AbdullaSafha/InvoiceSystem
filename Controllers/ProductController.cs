@@ -25,7 +25,7 @@ namespace InvoiceSystem.Controllers
 
             _logger.LogInformation("Logging is working");
             _productService.AddProduct(product);
-            return Ok();
+            return Ok(new { Result = "Product is been added successfully" });
         }
 
 
@@ -36,7 +36,7 @@ namespace InvoiceSystem.Controllers
         {
             _productService.UpdateProduct(product);
             _logger.LogInformation("Updated product: {Id}", product.id);
-            return Ok();
+            return Ok(new { Result = "Product is been updated successfully" });
         }
 
 
@@ -46,7 +46,7 @@ namespace InvoiceSystem.Controllers
         {
             _productService.DeleteProduct(id);
             _logger.LogInformation("Deleted product: {Id}", id);
-            return Ok();
+            return Ok(new { Result = "Product is been deleted successfully" });
         }
         //GetAllProducts
         [HttpGet]

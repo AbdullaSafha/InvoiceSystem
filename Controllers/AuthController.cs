@@ -1,4 +1,5 @@
 ﻿using InvoiceSystem.Class;
+using InvoiceSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceSystem.Controllers

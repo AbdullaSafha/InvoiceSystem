@@ -1,4 +1,4 @@
-﻿namespace InvoiceSystem.Controllers
+﻿namespace InvoiceSystem.Models
 {
     public class LoginModel
     {

@@ -1,6 +1,7 @@
 ﻿using InvoiceSystem.Models;
 using InvoiceSystem.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace InvoiceSystem.Controllers
 {
@@ -28,14 +29,14 @@ namespace InvoiceSystem.Controllers
         public IActionResult UpdateCategory([FromBody] Category category)
         {
             _categoryService.UpdateCategory(category);
-            return Ok();
+            return Ok(new { Result = "Category is been updated successfully" });
         }
         //Delete
         [HttpDelete("{id}")]
         public IActionResult DeleteCategory(int id)
         {
             _categoryService.DeleteCategory(id);
-            return Ok();
+            return Ok(new { Result = "Category is been deleted successfully" });
         }
 
         [HttpGet("{id}")]

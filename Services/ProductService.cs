@@ -56,9 +56,9 @@ namespace InvoiceSystem.Services
             //throw new NotImplementedException();
         }
 
-        internal List<Product> GetProduct(object productId)
+        internal Product GetProduct(int id)
         {
-            return _products;
+            return _products.FirstOrDefault(p => p.id == id); 
         }
     }
 }
