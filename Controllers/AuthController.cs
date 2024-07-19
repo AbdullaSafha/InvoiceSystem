@@ -1,5 +1,5 @@
-﻿using InvoiceSystem.Class;
-using InvoiceSystem.Models;
+﻿using InvoiceSystem.Models;
+using InvoiceSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceSystem.Controllers

@@ -1,4 +1,3 @@
-using InvoiceSystem.Class;
 using InvoiceSystem.DataAccess;
 using InvoiceSystem.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

@@ -4,9 +4,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace InvoiceSystem.Class
+namespace InvoiceSystem.Services
 {
-    
+
     public class jwtService
     {
         private readonly string _secret;
@@ -30,7 +30,7 @@ namespace InvoiceSystem.Class
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
-         
+
         }
 
         public ClaimsPrincipal GetPrincipalFromToken(string token)
