@@ -22,11 +22,31 @@ namespace InvoiceSystem.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
+            try
+            {
+                if (product == null)
+                {
+                    return BadRequest("Product cannot be empty");
+                }
 
-            _logger.LogInformation("Logging is working");
-            _productService.AddProduct(product);
-            return Ok(new { Result = "Product is been added successfully" });
+                if (product.name == null || product.price == 0)
+                {
+                    return BadRequest("Product name and product price cannot be empty");
+                }
+                _logger.LogInformation("Add product request is recevied");
+                _productService.AddProduct(product);
+                return Ok(new { Result = "Product is been added successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("add product request occured error");
+
+                _logger.LogInformation(ex.InnerException.ToString());
+
+                throw ex;
+            }
         }
+
 
 
 
@@ -34,9 +54,21 @@ namespace InvoiceSystem.Controllers
         [HttpPut]
         public IActionResult UpdateProduct([FromBody] Product product)
         {
-            _productService.UpdateProduct(product);
-            _logger.LogInformation("Updated product: {Id}", product.id);
-            return Ok(new { Result = "Product is been updated successfully" });
+            try
+            {
+                _logger.LogInformation("update product request is recevied");
+                _productService.UpdateProduct(product);
+                _logger.LogInformation("Updated product: {Id}", product.id);
+                return Ok(new { Result = "Product is been updated successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("update product request occured error");
+
+                _logger.LogInformation(ex.InnerException.ToString());
+
+                throw ex;
+            }
         }
 
 
@@ -44,17 +76,41 @@ namespace InvoiceSystem.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {
-            _productService.DeleteProduct(id);
-            _logger.LogInformation("Deleted product: {Id}", id);
-            return Ok(new { Result = "Product is been deleted successfully" });
+            try
+            {
+                _logger.LogInformation("delete product request is recevied");
+                _productService.DeleteProduct(id);
+                _logger.LogInformation("Deleted product: {Id}", id);
+                return Ok(new { Result = "Product is been deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Delete product request occured error");
+
+                _logger.LogInformation(ex.InnerException.ToString());
+
+                throw ex;
+            }
         }
         //GetAllProducts
         [HttpGet]
         public IActionResult GetAllProducts()
         {
-            var products = _productService.GetAllProducts();
-            _logger.LogInformation("Retrieved all products");
-            return Ok(products);
+            try
+            {
+                _logger.LogInformation("get all product request is recevied");
+                var products = _productService.GetAllProducts();
+                _logger.LogInformation("Retrieved all products");
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Get all products occured error");
+
+                _logger.LogInformation(ex.InnerException.ToString());
+
+                throw ex;
+            }
         }
     }
 }

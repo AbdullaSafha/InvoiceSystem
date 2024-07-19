@@ -22,16 +22,28 @@ namespace InvoiceSystem.Controllers
         [HttpPost]
         public IActionResult Login(LoginModel model)
         {
-            if (model == null || string.IsNullOrEmpty(model.Name))
+            try
             {
-                _logger.LogWarning("Login attempt with invalid data");
-                return BadRequest("Invalid user data.");
+                if (model == null || string.IsNullOrEmpty(model.Name))
+                {
+                    _logger.LogWarning("Login attempt with invalid data");
+                    return BadRequest("Invalid user data.");
+                }
+
+                var userId = string.Concat(model.Name, model.Password);
+                var token = _jwtService.GenerateToken(userId);
+                _logger.LogInformation("User {UserId} logged in successfully", userId);
+                return Ok(new { Token = token });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Login request occured error");
+
+                _logger.LogInformation(ex.InnerException.ToString());
+                
+                throw ex;
             }
 
-            var userId =string.Concat(model.Name,model.Password); 
-            var token = _jwtService.GenerateToken(userId);
-            _logger.LogInformation("User {UserId} logged in successfully", userId);
-            return Ok(new { Token = token });
         }
     }
 }
